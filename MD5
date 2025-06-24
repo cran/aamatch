@@ -1,0 +1,10 @@
+ecffcff3ad2b5c179b1878bdda765a68 *DESCRIPTION
+b90ca8f90fdc007ac100967d5ed88a92 *NAMESPACE
+42cbee71431e372ba7f591ff61a8cb26 *R/artless.R
+0429ffba78458945e3ee1c5800385035 *build/partial.rdb
+f8a5f4d90a5bb79a1bfdbca42001d497 *data/PeriMatched.rda
+93408c2b828c5ba5989f0fe62cb7b926 *data/PeriUnmatched.rda
+c3f1900a0f1992f8a01a38884ca9e86a *man/PeriMatched.Rd
+102e5b3cdc69e9cbdd3ca43320717e25 *man/PeriUnmatched.Rd
+0f18ae025cff6a402aa23d979c51bc21 *man/aamatch-package.Rd
+c217e2d67d72500aac82ce1f98cdeb96 *man/artless.Rd

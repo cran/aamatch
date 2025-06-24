@@ -1,0 +1,4 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "quantile", "sd", "uniroot","glm.fit","binomial")
+importFrom("iTOS", "makematch", "addinteger", "addMahal", "addNearExact")
+
