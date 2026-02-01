@@ -7,11 +7,11 @@
 \concept{Fine balance}
 \concept{Near exact matching}
 \title{
-Artless Automatic Matching
+Artless Automatic Matching (Old Version)
 }
 \description{
-Implements a simple version of multivariate matching using a propensity score, near-exact matching, near-fine balance, and robust Mahalanobis distance matching.  You specify the variables, and the program does everything else.  Should you
-be artful, not artless?  See the notes.
+Please use the newer version 2, \code{\link{artlessV2}}, not this old version, artless().  This old version, artless(), is unchanged to maintain backwards compatibility; see the details.
+Implements a simple version of multivariate matching using a propensity score, near-exact matching, near-fine balance, and robust Mahalanobis distance matching.
 }
 \usage{
 artless(dat, z, x, xm = NULL, near = NULL, fine = NULL,
@@ -51,14 +51,16 @@ Either "rlemon" or "rrelaxiv".  The rlemon solver is automatically available wit
 }
 }
 \details{
-This package builds a matched treated-control sample from an unmatched data set.  It asks you to designate roles for specific covariates, and it does the rest.  It is described as ``artless automatic matching'' because it makes decisions by default.  Perhaps you could make better decisions; if so, perhaps try the iTOS package which gives you much more control over
-decisions.  The package will often create a reasonable matched sample with little effort; however, it also could be used as a first step in learning the art of constructing a matched sample.  Wittgenstein spoke of a the ``ladder you throw away after you have climbed it,'' and the package can also serve that function.
+Please use version 2, \code{\link{artlessV2}}, not this version, artless().  Although quite similar, the newer version, artlessV2(), changes various defaults and fixes some quirks, bugs, and oddities. Also, artlessV2() sets various defaults and calls another function, \code{\link{alittleArt}}.  In alittleArt(), you can change the defaults to have fine control over the resulting match.  You can easily make the step from artlessV2() to alittleArt() because, in fact, you have been using alittleArt() all along.  The code for artlessV2() is now a single function call to alittleArt().  The documentation for artlessV2() is easy to read, because defaults are set for you without mention.  The documentation for alittleArt() is explicit and comprehensive, because anyone who opts for alittleArt() has thereby expressed an interest in fine control of the match and its associated technical detail.
 }
 \value{
-\item{match }{A dataframe containing the matched data set.  match contains the rows of dat in a different order.  match adds two columns to dat, called mset and matched, which identify matched pairs or matched sets.  Specifically, matched is TRUE if a row is in the matched sample and is FALSE otherwise.  Rows of dat that are in the same matched set have the same value of mset.  The rows of match are sorted by mset with the treated individual before the matched controls.  The unmatched controls with matched=FALSE appear as the last rows of match.  match also adds the estimated propensity score as a probability pr.
+\item{match }{A dataframe containing the matched data set.  match contains the rows of dat in a different order.  match adds two columns to dat, called mset and matched, which identify matched pairs or matched sets.  Specifically, matched is TRUE if a row is in the matched sample and is FALSE otherwise.  Rows of dat that are in the same matched set have the same value of mset.  The rows of match are sorted by mset with the treated individual before the matched controls.  The unmatched controls with matched=FALSE appear as the last rows of match.
 When you analyze the matched data, you will want to remove rows of match with matched==FALSE.}
 \item{balance }{A matrix called the balance table.  The matrix has one row for each covariate in x, xm, near and fine; so, some covariates may be repeated.  It also has a first row for the propensity score.  There are five columns.
 Column 1 is the mean of the covariate in the treated group.  Column 2 is the mean of the covariate in the matched control group.  Column 3 is the mean of the covariate among all controls prior to matching.  Column 4 is the difference between columns 1 and 2 divided by a pooled estimate of the standard deviation of the covariate before matching.  Column 5 is the difference between columns 1 and 3 divided by a pooled estimate of the standard deviation of the covariate before matching.  Notice that columns 4 and 5 have the same denominator, but different numerators.}
+}
+\seealso{
+\code{\link{artlessV2}}
 }
 \references{
 Bertsekas, D. P., Tseng, P. (1988) <doi:10.1007/BF02288322> The Relax codes for linear minimum cost network flow problems. Annals of Operations Research, 13, 125-190.
@@ -142,19 +144,19 @@ in x.
 
 -- The covariates in x could include, say: (i) a quadratic in age,
 (age-mean(age))^2, (ii) an interaction, (age-mean(age))*(bmi-mean(bmi)), or
-(iii) spline terms computed from age. The propensity score is fitted as a linear logit model in the covariates in x, but you can fit various nonlinear propensity scores by passing in x various nonlinear transformations of a more limited set of covariates.
+(iii) spline terms computed from age. The function alittleArt() in this package permits you to import a propensity score, rather than automatically fitting it as a linear logit model fitted by maximum likelihood.
 
 -- Usually, the first match you construct is imperfect, and you see this in the balance table or in plots of the matched data.  So, you make small adjustments to x, xm, near and fine to fix the imperfections.
 The match should be finalized before any outcome information is examined.  Taking the first match without looking at it and improving it is not artless; it is incompetent.
 
--- Once you have developed some experience with the artless function, you may want to learn about other artful tactics that can enhance your ability to remove imperfections in a match.  Some of these tactics are implemented in the iTOS package that is called by artless.
+-- Once you have developed some experience with the artless function, you may want to learn about other artful tactics that can enhance your ability to remove imperfections in a match.  In particular, alittleArt() in this package provides user control of various parameters or penalties that affect the match, greatly increasing user control of the resulting match, at the price of some added effort on the part of the user.  Some of these tactics are implemented in the iTOS package that is called by artless.
 
 -- There are treated and control groups that cannot be matched.  If all of the treated individuals are under age 20 and all of the controls are over age 50, then there is no way you can match for age.  You could do regression or covariance adjustment for age, but of course it would be silly.  Matching will often stop you from doing silly things, while regression will let you do silly things.
 }
 
 \note{
 Should you be artful rather than artless?  Essentially, the artless() function
-is setting priorities by default.  This makes artless() easy to use, but its default priorities might not be your priorities.  An alternative is to set your own priorities by using the matching methods in, say, the iTOS package.  The artless() function calls the functions in the iTOS package, but it sets default priorities when it does this.  There are also many more options in the iTOS package.
+is setting priorities by default.  This makes artless() easy to use, but its default priorities might not be your priorities.  One alternative is to use the alittleArt() function in this package; see the discussion below for the distinction between artless() and alittleArt().  An alternative is to set your own priorities by using the matching methods in, say, the iTOS package.  The artless() function calls the functions in the iTOS package, but it sets default priorities when it does this.  There are also many more options in the iTOS package.
 
 What can artful use of iTOS do that artless() cannot?  artless() automatically sets priorities and penalties, but iTOS lets you adjust them.  artless() automatically gives an emphasis to the propensity score, and does this in a particular way, but iTOS lets you decide.  The directional penalties of Yu and Rosenbaum (2019) need to be titrated to produce desired effects; they are in iTOS but not in artless().  Near-exact and near-fine matching are implemented for nominal variables in artless(), but iTOS has other options for ordered categories.  iTOS lets you give more emphasis to one covariate, less to another, but artless() does this only indirectly through the matrices x, xm, near and fine.  In artless() all variables in near are treated as equally important, and all variables in fine are treated as equally important, but iTOS lets you decide.  Caliper matching is possible in iTOS but not in artless().  artless() uses the control-control edge costs in Zhang et al. (2023) to avoid low propensity scores in the control group, but iTOS lets you use this feature any way you prefer.  The iTOS package is associated with Rosenbaum (2025), especially its Chapters 5 and 6.
 }
@@ -189,6 +191,7 @@ Zubizarreta (2012) and Rosenbaum and Zubizarreta (2023).
 
 \examples{
 \donttest{
+
 # The example below uses the binge data from the iTOS package.
 # See the documentation for binge in the iTOS package for more information.
 #

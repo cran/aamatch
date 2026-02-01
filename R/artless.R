@@ -43,7 +43,6 @@ artless<-function(dat,z,x,xm=NULL,near=NULL,fine=NULL,
   names(z)<-rownames(dat)
   prop<-stats::glm.fit(x,z,family=stats::binomial())
   pr<-prop$fitted.values
-  dat<-cbind(dat,pr)
   pr6<-as.integer(cut(pr,c(0,stats::quantile(pr,c(1/6,2/6,3/6,4/6,5/6)),1)))
   pr3<-as.integer(cut(pr,c(0,stats::quantile(pr,c(1/3,2/3)),1)))
   left<-iTOS::startcost(z)

@@ -1,8 +1,8 @@
 Package: aamatch
 Type: Package
-Title: Artless Automatic Multivariate Matching for Observational
-        Studies
-Version: 0.3.7
+Title: Artless Automatic or Artful Multivariate Matching for
+        Observational Studies
+Version: 0.4.5
 Authors@R: person("Paul", "Rosenbaum", 
                   email = "rosenbaum@wharton.upenn.edu",
                   role = c("aut", "cre"))
@@ -14,7 +14,7 @@ Imports: iTOS, stats
 Suggests: DOS2, sensitivity2x2xk, sensitivitymv, weightedRank, xtable
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2025-06-21 15:13:31 UTC; rosenbap
+Packaged: 2026-02-01 18:04:26 UTC; rosenbap
 Author: Paul Rosenbaum [aut, cre]
 Repository: CRAN
-Date/Publication: 2025-06-24 09:40:02 UTC
+Date/Publication: 2026-02-01 20:00:02 UTC

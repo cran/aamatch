@@ -48,7 +48,7 @@ Pimentel, S. D., Yoon, F., & Keele, L. (2015) <doi:10.1002/sim.6593> Variable‐
 
 Rosenbaum, P. R. (2016) <doi:10.1214/16-AOAS942> Using Scheffe projections for multiple outcomes in an observational study of smoking and periondontal disease. Annals of Applied Statistics, 10, 1447-1471.
 
-Rosenbaum, Paul R. (2025) A Design for Observational Studies in Which Some People Avoid Treatment.  Manuscript.
+Rosenbaum, Paul R. (2026) <doi:10.1080/00031305.2026.2623909> A design for observational studies in which some people avoid treatment.  American Statistician, to appear.
 
 Tomar, S. L. and Asma, S. (2000). Smoking attributable periodontitis in the United States: Findings from NHANES III. J. Periodont. 71, 743-751.
 

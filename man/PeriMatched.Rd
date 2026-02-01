@@ -25,7 +25,6 @@ data in PeriUnmatched in this package.
     \item{\code{z}}{Daily smoker.  1 indicates someone who smokes everyday.  0 indicates a never-smoker who smoked fewer than 100 cigarettes in their life.}
     \item{\code{pd}}{A percent indicating periodontal disease.  See details. }
     \item{\code{prop}}{A propensity score created in the example for PeriUnmatched.  This propensity score decided which smokers would have 1 control and which would have 5 controls.}
-    \item{\code{pr}}{A second propensity score used to create matched pairs or matched 1-to-4 sets, after the split based on prop}
     \item{\code{mset}}{Indicator of the matched set, 1, 2, ..., 1425}
     \item{\code{treated}}{The SEQN for the smoker in this matched set.  Contains the same information as mset, but in a different form.}
     \item{\code{pair}}{1 for a matched pair, 0 for a 1-to-4 matched set}
@@ -65,7 +64,7 @@ Rosenbaum, P. R. (2016) <doi:10.1214/16-AOAS942> Using Scheffe projections for m
 
 Rosenbaum, P. R., & Small, D. S. (2017) <doi:10.1111/biom.12591> An adaptive Mantel–Haenszel test for sensitivity analysis in observational studies. Biometrics, 73(2), 422-430.
 
-Rosenbaum, Paul R. (2025) A Design for Observational Studies in Which Some People Avoid Treatment.  Manuscript.
+Rosenbaum, Paul R. (2026) <doi:10.1080/00031305.2026.2623909> A design for observational studies in which some people avoid treatment.  American Statistician, to appear.
 
 Tomar, S. L. and Asma, S. (2000). Smoking attributable periodontitis in the United States: Findings from NHANES III. J. Periodont. 71, 743-751.
 
